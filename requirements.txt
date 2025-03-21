@@ -3,7 +3,6 @@ tqdm
 imageio
 torch
 opencv-python
-moviepy
 torchvision
 
 
