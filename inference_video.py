@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore")
 
 def transferAudio(sourceVideo, targetVideo):
     import shutil
-    import moviepy.editor
+    # import moviepy.editor
     tempAudioFileName = "./temp/audio.mkv"
 
     # split audio from original video file and store in "temp" directory
@@ -125,7 +125,7 @@ if not args.video is None:
     videogen = imageio.get_reader(args.video)
     # lastframe = next(videogen)
     lastframe = next(iter(videogen))
-    lastframe = cv2.cvtColor(lastframe, cv2.COLOR_RGB2BGR)
+    # lastframe = cv2.cvtColor(lastframe, cv2.COLOR_RGB2BGR)
     fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
     video_path_wo_ext, ext = os.path.splitext(args.video)
     print('{}.{}, {} frames in total, {}FPS to {}FPS'.format(video_path_wo_ext, args.ext, tot_frame, fps, args.fps))
