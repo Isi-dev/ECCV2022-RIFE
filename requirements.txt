@@ -1,6 +1,6 @@
 numpy
 tqdm
-sk-video
+imageio
 torch
 opencv-python
 moviepy
