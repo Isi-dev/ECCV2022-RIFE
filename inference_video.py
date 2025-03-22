@@ -181,6 +181,14 @@ def build_read_buffer(user_args, read_buffer, videogen):
 
 def make_inference(I0, I1, n):
     global model
+    print("line 184- I0 shape:", I0.shape)
+    print("line 185- I1 shape:", I1.shape)
+    print(f"I0: {I0.shape}, I1: {I1.shape}, Scale: {args.scale}")
+
+    if I0.shape != I1.shape:
+        print(f"Resizing: {I0.shape} → {I1.shape}")
+        I1 = F.interpolate(I1, size=I0.shape[2:], mode='bilinear', align_corners=False)
+        
     middle = model.inference(I0, I1, args.scale)
     if n == 1:
         return [middle]
