@@ -249,6 +249,13 @@ while True:
             temp = frame
         I1 = torch.from_numpy(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
         I1 = pad_image(I1)
+        print("line 252- I0 shape:", I0.shape)
+        print("line 253- I1 shape:", I1.shape)
+        print(f"I0: {I0.shape}, I1: {I1.shape}, Scale: {args.scale}")
+    
+        if I0.shape != I1.shape:
+            print(f"Resizing: {I0.shape} → {I1.shape}")
+            I1 = F.interpolate(I1, size=I0.shape[2:], mode='bilinear', align_corners=False)
         I1 = model.inference(I0, I1, args.scale)
         I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
         ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
